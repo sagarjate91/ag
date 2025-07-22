@@ -13,11 +13,11 @@ public class APIConfig {
                 .route("payment-service", r -> r.path("/api/payments/**")
                         .filters(f -> f.circuitBreaker(config -> config.setName("payment-cb")
                                 .setFallbackUri("forward:/paymentServiceFallBack")))
-                        .uri("lb://PS"))
+                        .uri("lb://PAYMENT-SERVICE"))
                 .route("order-service", r -> r.path("/api/orders/**")
                         .filters(f -> f.circuitBreaker(config -> config.setName("order-cb")
                                 .setFallbackUri("forward:/orderServiceFallBack")))
-                        .uri("lb://OS"))
+                        .uri("lb://ORDER-SERVICE"))
                 .build();
     }
 }
